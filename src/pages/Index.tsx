@@ -239,7 +239,7 @@ const Index = () => {
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1, transition: { duration: 0.6, delay: 5 } }}
-              className="absolute bottom-20 left-0 right-0 flex justify-center"
+              className="absolute bottom-16 md:bottom-20 left-0 right-0 flex justify-center px-6"
             >
               <button
                 onClick={handleEnter}
