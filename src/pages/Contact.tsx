@@ -263,16 +263,7 @@ const Contact = () => {
           {/* Alternative Contact */}
           <div className="mt-12 pt-8 border-t border-border/30 text-center fade-in-delayed-2">
             <p className="text-muted-foreground text-sm">
-              Prefer other channels? Find me on{" "}
-              <a
-                href="https://tumblr.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-ember hover:text-ember/80 transition-colors"
-              >
-                Tumblr
-              </a>{" "}
-              or check the{" "}
+              Prefer other channels? Check the{" "}
               <Link
                 to="/follow"
                 className="text-ember hover:text-ember/80 transition-colors"

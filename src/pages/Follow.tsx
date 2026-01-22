@@ -40,13 +40,6 @@ const Follow = () => {
       description: "Follow for episode-by-episode updates on serialized originals. Best for ongoing series.",
       icon: "📖",
     },
-    {
-      name: "Tumblr",
-      url: "https://www.tumblr.com/machimaquiaveli",
-      handle: "@machimaquiaveli",
-      description: "Behind-the-scenes thoughts, writing updates, character musings, and midnight rambles.",
-      icon: "🌙",
-    },
   ];
 
   const whyFollow = [

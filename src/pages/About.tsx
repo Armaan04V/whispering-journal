@@ -167,7 +167,7 @@ const About = () => {
                 </div>
                 <div className="space-y-6">
                   <p>
-                    You'll find me on AO3, Tapas, and Tumblr, publishing web fiction that blurs the 
+                    You'll find me on AO3 and Tapas, publishing web fiction that blurs the 
                     line between literary and genre horror. My stories are free to read, because 
                     horror should be accessible to anyone brave enough to enter.
                   </p>
