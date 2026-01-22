@@ -182,7 +182,7 @@ const Index = () => {
         {/* ============================================
             HERO SECTION - Atmosphere First
         ============================================ */}
-        <section className="min-h-screen flex flex-col items-center justify-center px-6 relative overflow-hidden">
+        <section className="h-[100dvh] flex flex-col items-center justify-center px-6 relative overflow-hidden">
           {/* Deep ambient darkness with subtle warmth */}
           <div className="absolute inset-0 bg-gradient-to-b from-charcoal-dark via-background to-background" />
           
@@ -195,81 +195,84 @@ const Index = () => {
             />
           </div>
 
-          {/* Content - staggered reveal */}
-          <div className="relative z-10 text-center">
-            {/* The Symbol - appears first */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 2, delay: 0.5 }}
-              className="mb-12"
-            >
-              <div className="w-32 h-32 md:w-40 md:h-40 mx-auto">
-                <img
-                  src={pumpkinLogo}
-                  alt=""
-                  className="w-full h-full object-contain opacity-80 drop-shadow-[0_0_80px_rgba(210,105,30,0.1)]"
-                />
-              </div>
-            </motion.div>
-
-            {/* Author Name - reveals after logo */}
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 2, delay: 2 }}
-              className="font-serif text-2xl md:text-4xl text-cream/90 tracking-wide mb-6"
-            >
-              A.M.Martin
-            </motion.h1>
-
-            {/* Tagline - last to appear */}
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 2, delay: 3.5 }}
-              className="font-serif text-base md:text-lg text-cream-muted/50 italic"
-            >
-              Horror fiction for the quietly disturbed.
-            </motion.p>
-          </div>
-
-          {/* Enter Button - Attractive Design */}
-          {!hasEntered && (
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1, transition: { duration: 0.6, delay: 5 } }}
-              className="absolute bottom-16 md:bottom-20 left-0 right-0 flex justify-center px-6"
-            >
-              <button
-                onClick={handleEnter}
-                className="group relative"
+          {/* Content wrapper - centers everything vertically */}
+          <div className="relative z-10 flex flex-col items-center justify-center flex-1 w-full pt-16">
+            {/* Content - staggered reveal */}
+            <div className="text-center">
+              {/* The Symbol - appears first */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 2, delay: 0.5 }}
+                className="mb-8 md:mb-12"
               >
-                {/* Outer glow ring */}
-                <div className="absolute inset-0 -m-4 rounded-full bg-ember/10 blur-xl group-hover:bg-ember/20 transition-all duration-700" />
-                
-                {/* Button container */}
-                <div className="relative px-10 py-4 border border-ember/40 rounded-full bg-charcoal-dark/80 backdrop-blur-sm overflow-hidden group-hover:border-ember/70 transition-all duration-500">
-                  {/* Animated background sweep */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-ember/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-                  
-                  {/* Text */}
-                  <span className="relative text-sm tracking-[0.4em] uppercase text-ember group-hover:text-cream transition-colors duration-500">
-                    Enter
-                  </span>
-                </div>
-
-                {/* Pulsing indicator below */}
-                <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1">
-                  <motion.div
-                    animate={{ y: [0, 6, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                    className="w-px h-4 bg-gradient-to-b from-ember/50 to-transparent"
+                <div className="w-28 h-28 md:w-40 md:h-40 mx-auto">
+                  <img
+                    src={pumpkinLogo}
+                    alt=""
+                    className="w-full h-full object-contain opacity-80 drop-shadow-[0_0_80px_rgba(210,105,30,0.1)]"
                   />
                 </div>
-              </button>
-            </motion.div>
-          )}
+              </motion.div>
+
+              {/* Author Name - reveals after logo */}
+              <motion.h1 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 2, delay: 2 }}
+                className="font-serif text-2xl md:text-4xl text-cream/90 tracking-wide mb-4 md:mb-6"
+              >
+                A.M.Martin
+              </motion.h1>
+
+              {/* Tagline - last to appear */}
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 2, delay: 3.5 }}
+                className="font-serif text-base md:text-lg text-cream-muted/50 italic"
+              >
+                Horror fiction for the quietly disturbed.
+              </motion.p>
+            </div>
+
+            {/* Enter Button - Part of flex layout, not absolute */}
+            {!hasEntered && (
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, transition: { duration: 0.6, delay: 5 } }}
+                className="mt-12 md:mt-16"
+              >
+                <button
+                  onClick={handleEnter}
+                  className="group relative"
+                >
+                  {/* Outer glow ring */}
+                  <div className="absolute inset-0 -m-4 rounded-full bg-ember/10 blur-xl group-hover:bg-ember/20 transition-all duration-700" />
+                  
+                  {/* Button container */}
+                  <div className="relative px-10 py-4 border border-ember/40 rounded-full bg-charcoal-dark/80 backdrop-blur-sm overflow-hidden group-hover:border-ember/70 transition-all duration-500">
+                    {/* Animated background sweep */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-ember/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                    
+                    {/* Text */}
+                    <span className="relative text-sm tracking-[0.4em] uppercase text-ember group-hover:text-cream transition-colors duration-500">
+                      Enter
+                    </span>
+                  </div>
+
+                  {/* Pulsing indicator below */}
+                  <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1">
+                    <motion.div
+                      animate={{ y: [0, 6, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                      className="w-px h-4 bg-gradient-to-b from-ember/50 to-transparent"
+                    />
+                  </div>
+                </button>
+              </motion.div>
+            )}
+          </div>
         </section>
 
         {/* ============================================
