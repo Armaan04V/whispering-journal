@@ -147,12 +147,6 @@ const Works = () => {
       description: "Serialized originals and web fiction — best for following along",
       works: "Original series",
     },
-    {
-      name: "Tumblr",
-      url: "https://www.tumblr.com/machimaquiaveli",
-      description: "Behind-the-scenes, writing thoughts, and midnight musings",
-      works: "Updates & extras",
-    },
   ];
 
   return (

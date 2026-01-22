@@ -2,7 +2,6 @@ const Footer = () => {
   const platforms = [
     { name: "AO3", url: "https://archiveofourown.org" },
     { name: "Tapas", url: "https://tapas.io" },
-    { name: "Tumblr", url: "https://tumblr.com" },
   ];
 
   return (
