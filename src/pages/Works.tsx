@@ -345,7 +345,7 @@ const Works = () => {
                 All works are free to read. Choose your preferred platform and enter the dark.
               </p>
               
-              <div className="grid md:grid-cols-3 gap-6">
+              <div className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
                 {platforms.map((platform) => (
                   <a
                     key={platform.name}
