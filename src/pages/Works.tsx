@@ -3,11 +3,11 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ExternalLink, BookOpen, Clock, AlertTriangle } from "lucide-react";
 import pumpkinLogo from "@/assets/pumpkin-logo-transparent.png";
 import labyrinthCover from "@/assets/labyrinth-cover.png";
-import hollowHoursCover from "@/assets/hollow-hours-cover.jpg";
-import inheritanceCover from "@/assets/inheritance-cover.jpg";
-import velvetRoomCover from "@/assets/velvet-room-cover.jpg";
-import floorboardsCover from "@/assets/floorboards-cover.jpg";
-import watchersJournalCover from "@/assets/watchers-journal-cover.jpg";
+import summonBoyfriendCover from "@/assets/summon-boyfriend-cover.jpg";
+import summonHusbandCover from "@/assets/summon-husband-cover.jpg";
+import consequencesCover from "@/assets/consequences-cover.jpg";
+import faeCityCover from "@/assets/fae-city-cover.jpg";
+import thoughtsComfortCover from "@/assets/thoughts-comfort-cover.jpg";
 import Footer from "@/components/Footer";
 
 interface Story {
@@ -66,7 +66,7 @@ const Works = () => {
       chapters: "1 Chapter",
       platform: "AO3",
       platformUrl: "https://archiveofourown.org/works/69548971",
-      coverImage: hollowHoursCover,
+      coverImage: summonBoyfriendCover,
       contentWarnings: ["End of the world themes"],
       intensity: "Mild",
     },
@@ -81,7 +81,7 @@ const Works = () => {
       chapters: "1 Chapter",
       platform: "AO3",
       platformUrl: "https://archiveofourown.org/works/74766501",
-      coverImage: inheritanceCover,
+      coverImage: summonHusbandCover,
       contentWarnings: ["None"],
       intensity: "Mild",
     },
@@ -96,7 +96,7 @@ const Works = () => {
       chapters: "2 Chapters",
       platform: "AO3",
       platformUrl: "https://archiveofourown.org/works/71254951/chapters/185396281",
-      coverImage: velvetRoomCover,
+      coverImage: consequencesCover,
       contentWarnings: ["None"],
       intensity: "Mild",
     },
@@ -111,7 +111,7 @@ const Works = () => {
       chapters: "7 Chapters",
       platform: "AO3",
       platformUrl: "https://archiveofourown.org/works/70808976/chapters/184083821",
-      coverImage: floorboardsCover,
+      coverImage: faeCityCover,
       contentWarnings: ["None"],
       intensity: "Mild",
     },
@@ -126,7 +126,7 @@ const Works = () => {
       chapters: "1 Chapter",
       platform: "AO3",
       platformUrl: "https://archiveofourown.org/works/69679106",
-      coverImage: watchersJournalCover,
+      coverImage: thoughtsComfortCover,
       contentWarnings: ["Discussions of trauma"],
       intensity: "Mild",
     },

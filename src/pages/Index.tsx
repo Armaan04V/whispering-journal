@@ -5,11 +5,11 @@ import { motion } from "framer-motion";
 import Autoplay from "embla-carousel-autoplay";
 import pumpkinLogo from "@/assets/pumpkin-logo-transparent.png";
 import labyrinthCover from "@/assets/labyrinth-cover.png";
-import hollowHoursCover from "@/assets/hollow-hours-cover.jpg";
-import inheritanceCover from "@/assets/inheritance-cover.jpg";
-import velvetRoomCover from "@/assets/velvet-room-cover.jpg";
-import floorboardsCover from "@/assets/floorboards-cover.jpg";
-import watchersJournalCover from "@/assets/watchers-journal-cover.jpg";
+import summonBoyfriendCover from "@/assets/summon-boyfriend-cover.jpg";
+import summonHusbandCover from "@/assets/summon-husband-cover.jpg";
+import consequencesCover from "@/assets/consequences-cover.jpg";
+import faeCityCover from "@/assets/fae-city-cover.jpg";
+import thoughtsComfortCover from "@/assets/thoughts-comfort-cover.jpg";
 import Footer from "@/components/Footer";
 import { useToast } from "@/hooks/use-toast";
 import {
@@ -73,7 +73,7 @@ const Index = () => {
       hook: "The world is ending. Steph has a plan.",
       platform: "AO3",
       url: "https://archiveofourown.org/works/69548971",
-      image: hollowHoursCover,
+      image: summonBoyfriendCover,
       status: "Complete",
     },
     {
@@ -81,7 +81,7 @@ const Index = () => {
       hook: "The Ghost King has a promise to keep.",
       platform: "AO3",
       url: "https://archiveofourown.org/works/74766501",
-      image: inheritanceCover,
+      image: summonHusbandCover,
       status: "Complete",
     },
     {
@@ -89,7 +89,7 @@ const Index = () => {
       hook: "Jason makes a bargain. He should have chosen his words more carefully.",
       platform: "AO3",
       url: "https://archiveofourown.org/works/71254951/chapters/185396281",
-      image: velvetRoomCover,
+      image: consequencesCover,
       status: "Complete",
     },
     {
@@ -97,7 +97,7 @@ const Index = () => {
       hook: "Amity Park lands in the wrong dimension.",
       platform: "AO3",
       url: "https://archiveofourown.org/works/70808976/chapters/184083821",
-      image: floorboardsCover,
+      image: faeCityCover,
       status: "Complete",
     },
     {
@@ -105,7 +105,7 @@ const Index = () => {
       hook: "Jazz and Bruce finally talk.",
       platform: "AO3",
       url: "https://archiveofourown.org/works/69679106",
-      image: watchersJournalCover,
+      image: thoughtsComfortCover,
       status: "Complete",
     },
   ];
