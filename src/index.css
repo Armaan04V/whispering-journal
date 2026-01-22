@@ -1,0 +1,293 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+  MACHI MAQUIAVELI - Horror Author Design System
+  Dark, warm, atmospheric: charcoal blacks, burnt browns, ember orange, dim blood-red
+  Literary horror aesthetic - forbidden journal feel
+*/
+
+@layer base {
+  :root {
+    /* Dark charcoal background with warm undertones */
+    --background: 20 15% 6%;
+    /* Warm cream foreground for readable text */
+    --foreground: 35 20% 88%;
+
+    /* Card - slightly lighter than background */
+    --card: 20 12% 9%;
+    --card-foreground: 35 20% 88%;
+
+    /* Popover */
+    --popover: 20 12% 8%;
+    --popover-foreground: 35 20% 88%;
+
+    /* Primary - Ember orange from the jack-o'-lantern flames */
+    --primary: 25 85% 50%;
+    --primary-foreground: 20 15% 6%;
+
+    /* Secondary - Burnt brown */
+    --secondary: 20 25% 15%;
+    --secondary-foreground: 35 20% 85%;
+
+    /* Muted - Dark sepia for subtle elements */
+    --muted: 20 15% 12%;
+    --muted-foreground: 30 12% 55%;
+
+    /* Accent - Deep blood red, used sparingly */
+    --accent: 0 65% 35%;
+    --accent-foreground: 35 20% 92%;
+
+    /* Destructive */
+    --destructive: 0 72% 40%;
+    --destructive-foreground: 35 20% 92%;
+
+    /* Borders - subtle warm gray */
+    --border: 20 10% 18%;
+    --input: 20 10% 15%;
+    --ring: 25 85% 50%;
+
+    --radius: 0.25rem;
+
+    /* Custom horror tokens */
+    --ember: 25 90% 55%;
+    --ember-glow: 30 100% 60%;
+    --blood: 0 70% 30%;
+    --blood-dim: 0 50% 20%;
+    --charcoal: 20 15% 6%;
+  --charcoal-light: 20 12% 12%;
+  --charcoal-dark: 20 12% 6%;
+    --cream: 35 25% 90%;
+    --cream-muted: 30 15% 70%;
+    
+    /* Grain overlay */
+    --grain-opacity: 0.03;
+  }
+
+  /* No separate dark mode - this IS the dark mode */
+  .dark {
+    --background: 20 15% 6%;
+    --foreground: 35 20% 88%;
+    --card: 20 12% 9%;
+    --card-foreground: 35 20% 88%;
+    --popover: 20 12% 8%;
+    --popover-foreground: 35 20% 88%;
+    --primary: 25 85% 50%;
+    --primary-foreground: 20 15% 6%;
+    --secondary: 20 25% 15%;
+    --secondary-foreground: 35 20% 85%;
+    --muted: 20 15% 12%;
+    --muted-foreground: 30 12% 55%;
+    --accent: 0 65% 35%;
+    --accent-foreground: 35 20% 92%;
+    --destructive: 0 72% 40%;
+    --destructive-foreground: 35 20% 92%;
+    --border: 20 10% 18%;
+    --input: 20 10% 15%;
+    --ring: 25 85% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Source Sans 3', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', Georgia, serif;
+    @apply tracking-tight;
+  }
+
+  /* Custom translucent scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(20 12% 8% / 0.5);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(25 60% 30% / 0.5);
+    border-radius: 4px;
+    border: 1px solid hsl(25 60% 25% / 0.3);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(25 80% 45% / 0.6);
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  /* Firefox scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(25 60% 30% / 0.5) hsl(20 12% 8% / 0.5);
+  }
+
+  /* Noise/grain texture overlay */
+  .grain-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: var(--grain-opacity);
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  }
+}
+
+@layer components {
+  /* Ember glow effect for links and interactive elements */
+  .ember-glow {
+    @apply transition-all duration-500;
+    text-shadow: 0 0 0 transparent;
+  }
+  
+  .ember-glow:hover {
+    color: hsl(var(--ember));
+    text-shadow: 0 0 20px hsl(var(--ember-glow) / 0.4);
+  }
+
+  /* Fade in animation */
+  .fade-in {
+    animation: fadeIn 1.2s ease-out forwards;
+  }
+
+  .fade-in-delayed {
+    opacity: 0;
+    animation: fadeIn 1.2s ease-out 0.3s forwards;
+  }
+
+  .fade-in-delayed-2 {
+    opacity: 0;
+    animation: fadeIn 1.2s ease-out 0.6s forwards;
+  }
+
+  .fade-in-delayed-3 {
+    opacity: 0;
+    animation: fadeIn 1.2s ease-out 0.9s forwards;
+  }
+
+  /* Slow pulse for logo */
+  .pulse-slow {
+    animation: pulseSlow 4s ease-in-out infinite;
+  }
+
+  /* Navigation link style */
+  .nav-whisper {
+    @apply text-cream-muted text-sm tracking-widest uppercase transition-all duration-500;
+    letter-spacing: 0.2em;
+  }
+
+  .nav-whisper:hover {
+    @apply text-cream;
+    text-shadow: 0 0 15px hsl(var(--ember) / 0.3);
+  }
+
+  /* Story card hover */
+  .story-card {
+    @apply transition-all duration-500 border border-border bg-card;
+  }
+
+  .story-card:hover {
+    @apply border-ember/30;
+    box-shadow: 0 0 40px hsl(var(--ember) / 0.08);
+  }
+
+  /* Unsettling text reveal */
+  .text-reveal {
+    @apply relative overflow-hidden;
+  }
+
+  .text-reveal::after {
+    content: '';
+    @apply absolute inset-0 bg-background;
+    animation: reveal 1s ease-out 0.5s forwards;
+  }
+}
+
+@layer utilities {
+  /* Custom utility classes using design tokens */
+  .text-ember {
+    color: hsl(var(--ember));
+  }
+
+  .text-cream {
+    color: hsl(var(--cream));
+  }
+
+  .text-cream-muted {
+    color: hsl(var(--cream-muted));
+  }
+
+  .bg-charcoal {
+    background-color: hsl(var(--charcoal));
+  }
+
+  .bg-charcoal-light {
+    background-color: hsl(var(--charcoal-light));
+  }
+
+  .border-ember {
+    border-color: hsl(var(--ember));
+  }
+
+  .border-blood {
+    border-color: hsl(var(--blood));
+  }
+
+  /* Font utilities */
+  .font-serif {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+
+  .font-sans {
+    font-family: 'Source Sans 3', system-ui, sans-serif;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseSlow {
+  0%, 100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 0 transparent);
+  }
+  50% {
+    opacity: 0.9;
+    filter: drop-shadow(0 0 30px hsl(25 90% 55% / 0.3));
+  }
+}
+
+@keyframes reveal {
+  to {
+    transform: translateX(100%);
+  }
+}
