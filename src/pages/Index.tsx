@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/carousel";
 
 // Buttondown configuration
-const BUTTONDOWN_API_KEY = "042f9291-6d14-4529-9960-7fd5902782f9";
+const BUTTONDOWN_API_KEY = "0d360b6c-953b-46bb-b564-e10c8e276508";
 
 const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
