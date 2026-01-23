@@ -55,7 +55,7 @@ const Contact = () => {
           from_email: formData.email,
           subject: formData.subject,
           message: formData.message,
-          to_email: "andreamiramartin@gmail.com",
+          to_email: "ammartin.newsletter@gmail.com",
         },
         EMAILJS_PUBLIC_KEY
       );
