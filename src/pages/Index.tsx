@@ -30,15 +30,30 @@ const Index = () => {
   const location = useLocation();
   const { toast } = useToast();
 
-  // Lock scroll until entered
+  // Lock scroll until entered - with visibility change handling
   useEffect(() => {
-    if (!hasEntered) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
+    const updateScroll = () => {
+      if (!hasEntered) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = 'unset';
+      }
+    };
+
+    updateScroll();
+
+    // Re-check scroll state when user returns to tab
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        updateScroll();
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
     return () => {
       document.body.style.overflow = 'unset';
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
   }, [hasEntered]);
 
