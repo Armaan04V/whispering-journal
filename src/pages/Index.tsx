@@ -32,30 +32,42 @@ const Index = () => {
   const location = useLocation();
   const { toast } = useToast();
 
-  // Lock scroll until entered - with visibility change handling
+  // Lock scroll until entered - robust handling
   useEffect(() => {
-    const updateScroll = () => {
-      if (!hasEntered) {
+    if (!hasEntered) {
+      // Force scroll to top and lock
+      window.scrollTo(0, 0);
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    }
+
+    // Re-check on visibility change (tab switch)
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible' && !hasEntered) {
+        window.scrollTo(0, 0);
         document.body.style.overflow = 'hidden';
-      } else {
-        document.body.style.overflow = 'unset';
+        document.documentElement.style.overflow = 'hidden';
       }
     };
 
-    updateScroll();
-
-    // Re-check scroll state when user returns to tab
-    const handleVisibilityChange = () => {
-      if (document.visibilityState === 'visible') {
-        updateScroll();
+    // Also handle focus events
+    const handleFocus = () => {
+      if (!hasEntered) {
+        window.scrollTo(0, 0);
       }
     };
 
     document.addEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('focus', handleFocus);
 
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
       document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('focus', handleFocus);
     };
   }, [hasEntered]);
 
