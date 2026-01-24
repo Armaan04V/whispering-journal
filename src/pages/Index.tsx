@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
+import { Menu, X, ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
 import Autoplay from "embla-carousel-autoplay";
 import pumpkinLogo from "@/assets/pumpkin-logo-transparent.png";
@@ -11,6 +11,7 @@ import consequencesCover from "@/assets/consequences-cover.jpg";
 import faeCityCover from "@/assets/fae-city-cover.jpg";
 import thoughtsComfortCover from "@/assets/thoughts-comfort-cover.jpg";
 import Footer from "@/components/Footer";
+import StoryModal, { StoryData } from "@/components/StoryModal";
 import { useToast } from "@/hooks/use-toast";
 import {
   Carousel,
@@ -27,6 +28,7 @@ const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [hasEntered, setHasEntered] = useState(false);
   const [isSubscribing, setIsSubscribing] = useState(false);
+  const [selectedStory, setSelectedStory] = useState<StoryData | null>(null);
   const location = useLocation();
   const { toast } = useToast();
 
@@ -73,55 +75,87 @@ const Index = () => {
 
   const isActive = (path: string) => location.pathname === path;
 
-  // Featured stories with images
-  const featuredStories = [
+  // Featured stories with images and full details
+  const featuredStories: StoryData[] = [
     {
       title: "Labyrinth",
       hook: "Some doors only open from the inside.",
+      longDescription: "A collection of interconnected tales exploring the spaces between what we know and what waits in the dark. Each story turns a familiar corner into something unfamiliar. A hallway that shouldn't exist. A reflection that moves too slowly.",
+      themes: ["Psychological Horror", "Slow-burn", "Cosmic Dread"],
       platform: "Tapas",
       url: "https://tapas.io/machimaquiaveli",
       image: labyrinthCover,
       status: "Ongoing",
+      wordCount: "45,000+",
+      chapters: "12 Stories",
+      intensity: "Moderate",
+      contentWarnings: ["Psychological distress", "Existential themes"],
     },
     {
       title: "How to summon a boyfriend",
       hook: "The world is ending. Steph has a plan.",
+      longDescription: "When Spoiler decides summoning a boyfriend is the answer to the apocalypse, she gets more than she bargained for. A crack-treated-seriously DC/Danny Phantom crossover where desperation meets the Ghost King.",
+      themes: ["Crack Treated Seriously", "DC/DP Crossover", "Apocalypse"],
       platform: "AO3",
       url: "https://archiveofourown.org/works/69548971",
       image: summonBoyfriendCover,
       status: "Complete",
+      wordCount: "1,935",
+      chapters: "1 Chapter",
+      intensity: "Mild",
     },
     {
       title: "How to summon a husband",
       hook: "The Ghost King has a promise to keep.",
+      longDescription: "The sequel to boyfriend summoning—now featuring marriage, bat-family chaos, and a Ghost King who always keeps his word. Part 2 of the 'Cass and Danny sitting on the end of the world' series.",
+      themes: ["Romance", "DC/DP Crossover", "Found Family"],
       platform: "AO3",
       url: "https://archiveofourown.org/works/74766501",
       image: summonHusbandCover,
       status: "Complete",
+      wordCount: "2,227",
+      chapters: "1 Chapter",
+      intensity: "Mild",
     },
     {
       title: "Consequences of Not Watching Your Words",
       hook: "Jason makes a bargain. He should have chosen his words more carefully.",
+      longDescription: "When Jason Todd strikes a deal with the Ghost King, he learns the hard way that exact wording matters. A tale of misunderstandings, unintended consequences, and Danny Phantom being supremely unhelpful.",
+      themes: ["Ghost King Danny", "Misunderstandings", "Word Games"],
       platform: "AO3",
       url: "https://archiveofourown.org/works/71254951/chapters/185396281",
       image: consequencesCover,
       status: "Complete",
+      wordCount: "4,621",
+      chapters: "2 Chapters",
+      intensity: "Mild",
     },
     {
       title: "Fae City",
       hook: "Amity Park lands in the wrong dimension.",
+      longDescription: "When Amity Park phases into the DC universe, the Justice League discovers that ghosts play by different rules—and the citizens of Amity are disturbingly used to it. Features Fae-like ghost politics and confused heroes.",
+      themes: ["Ghost as Fae", "Dimensional Mishaps", "Culture Clash"],
       platform: "AO3",
       url: "https://archiveofourown.org/works/70808976/chapters/184083821",
       image: faeCityCover,
       status: "Complete",
+      wordCount: "3,747",
+      chapters: "7 Chapters",
+      intensity: "Mild",
     },
     {
       title: "Thoughts and Comfort",
       hook: "Jazz and Bruce finally talk.",
+      longDescription: "Part of the 'Bamf Mom Jazz' series. Jazz Fenton sits down with Bruce Wayne for a conversation neither of them expected. Featuring liminal Jazz, family dynamics, and the kind of quiet understanding that only comes from shared trauma.",
+      themes: ["Liminal Jazz", "Family Dynamics", "Heart-to-Heart"],
       platform: "AO3",
       url: "https://archiveofourown.org/works/69679106",
       image: thoughtsComfortCover,
       status: "Complete",
+      wordCount: "2,214",
+      chapters: "1 Chapter",
+      intensity: "Mild",
+      contentWarnings: ["Discussions of trauma"],
     },
   ];
 
@@ -328,114 +362,69 @@ const Index = () => {
                 {featuredStories.map((story, index) => (
                   <CarouselItem key={index} className="pl-4 md:pl-6 basis-full sm:basis-1/2 lg:basis-1/3 overflow-visible">
                     <motion.div 
-                      className="group relative"
+                      className="group relative cursor-pointer"
                       whileHover={{ y: -8 }}
                       transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      onClick={() => setSelectedStory(story)}
                     >
-                      {story.url ? (
-                        <a
-                          href={story.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="block"
+                      <div className="relative aspect-[3/4] rounded-xl overflow-hidden bg-charcoal-light border border-border/30 transition-all duration-500 group-hover:border-ember/50 group-hover:shadow-[0_20px_60px_rgba(210,105,30,0.25),0_0_100px_rgba(210,105,30,0.1)]">
+                        {/* Image Background */}
+                        <img
+                          src={story.image}
+                          alt={story.title}
+                          className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-110 pointer-events-none"
                           draggable={false}
-                        >
-                          <div className="relative aspect-[3/4] rounded-xl overflow-hidden bg-charcoal-light border border-border/30 transition-all duration-500 group-hover:border-ember/50 group-hover:shadow-[0_20px_60px_rgba(210,105,30,0.25),0_0_100px_rgba(210,105,30,0.1)]">
-                            {/* Image Background */}
-                            <img
-                              src={story.image}
-                              alt={story.title}
-                              className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-110 pointer-events-none"
-                              draggable={false}
-                            />
+                        />
 
-                            {/* Dark overlay with animated gradient */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/50 to-transparent opacity-85 group-hover:opacity-75 transition-all duration-500" />
-                            
-                            {/* Animated corner accent */}
-                            <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-ember/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        {/* Dark overlay with animated gradient */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/50 to-transparent opacity-85 group-hover:opacity-75 transition-all duration-500" />
+                        
+                        {/* Animated corner accent */}
+                        <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-ember/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                            {/* Status Badge with pulse effect */}
-                            <div className="absolute top-4 left-4">
-                              <span className={`text-[10px] tracking-[0.15em] uppercase px-3 py-1.5 rounded-full backdrop-blur-md transition-all duration-300 ${
-                                story.status === "Ongoing"
-                                  ? "bg-ember/40 text-ember border border-ember/50 shadow-[0_0_15px_rgba(210,105,30,0.3)] group-hover:shadow-[0_0_25px_rgba(210,105,30,0.5)]"
-                                  : "bg-charcoal-light/70 text-cream-muted/80 border border-border/50 group-hover:bg-charcoal-light/90"
-                              }`}>
-                                {story.status}
-                              </span>
-                            </div>
+                        {/* Status Badge with pulse effect */}
+                        <div className="absolute top-4 left-4">
+                          <span className={`text-[10px] tracking-[0.15em] uppercase px-3 py-1.5 rounded-full backdrop-blur-md transition-all duration-300 ${
+                            story.status === "Ongoing"
+                              ? "bg-ember/40 text-ember border border-ember/50 shadow-[0_0_15px_rgba(210,105,30,0.3)] group-hover:shadow-[0_0_25px_rgba(210,105,30,0.5)]"
+                              : "bg-charcoal-light/70 text-cream-muted/80 border border-border/50 group-hover:bg-charcoal-light/90"
+                          }`}>
+                            {story.status}
+                          </span>
+                        </div>
 
-                            {/* Content with slide-up reveal */}
-                            <div className="absolute inset-x-0 bottom-0 p-6 transition-transform duration-500 group-hover:translate-y-[-4px]">
-                              <div className="flex items-center gap-2 mb-3">
-                                <span className="text-[10px] tracking-[0.15em] uppercase text-cream-muted/60 group-hover:text-cream-muted/80 transition-colors duration-300">
-                                  {story.platform}
-                                </span>
-                                <ExternalLink size={10} className="text-cream-muted/40 group-hover:text-ember transition-colors duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                              </div>
-                              
-                              <h3 className="font-serif text-xl md:text-2xl text-cream mb-2 group-hover:text-ember transition-colors duration-400">
-                                {story.title}
-                              </h3>
-                              
-                              <p className="font-serif text-sm text-cream-muted/60 italic leading-relaxed group-hover:text-cream-muted/90 transition-colors duration-400">
-                                {story.hook}
-                              </p>
-                              
-                              {/* Read indicator */}
-                              <div className="mt-4 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-400 translate-y-2 group-hover:translate-y-0">
-                                <span className="text-[9px] tracking-[0.2em] uppercase text-ember/80">Read Story</span>
-                                <span className="text-ember text-xs group-hover:translate-x-1 transition-transform duration-300">→</span>
-                              </div>
-                            </div>
-
-                            {/* Multi-layer hover glow */}
-                            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-                              <div className="absolute inset-0 bg-gradient-to-t from-ember/15 via-ember/5 to-transparent" />
-                              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-ember/10" />
-                            </div>
-                            
-                            {/* Border glow ring */}
-                            <div className="absolute inset-0 rounded-xl border-2 border-ember/0 group-hover:border-ember/30 transition-all duration-500 pointer-events-none" />
-                          </div>
-                        </a>
-                      ) : (
-                        <div className="relative aspect-[3/4] rounded-xl overflow-hidden bg-charcoal-light border border-border/30 transition-all duration-500 group-hover:border-ember/30">
-                          {/* Image Background */}
-                          <img
-                            src={story.image}
-                            alt={story.title}
-                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none"
-                            draggable={false}
-                          />
-
-                          {/* Dark overlay */}
-                          <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/70 to-charcoal/40" />
-
-                          {/* Status Badge */}
-                          <div className="absolute top-4 left-4">
-                            <span className="text-[10px] tracking-[0.15em] uppercase px-3 py-1.5 rounded-full backdrop-blur-md bg-charcoal-light/70 text-cream-muted/60 border border-border/40">
-                              {story.status}
-                            </span>
-                          </div>
-
-                          {/* Content */}
-                          <div className="absolute inset-x-0 bottom-0 p-6">
-                            <span className="text-[10px] tracking-[0.15em] uppercase text-cream-muted/50 block mb-3">
+                        {/* Content with slide-up reveal */}
+                        <div className="absolute inset-x-0 bottom-0 p-6 transition-transform duration-500 group-hover:translate-y-[-4px]">
+                          <div className="flex items-center gap-2 mb-3">
+                            <span className="text-[10px] tracking-[0.15em] uppercase text-cream-muted/60 group-hover:text-cream-muted/80 transition-colors duration-300">
                               {story.platform}
                             </span>
-                            
-                            <h3 className="font-serif text-xl md:text-2xl text-cream/70 mb-2">
-                              {story.title}
-                            </h3>
-                            
-                            <p className="font-serif text-sm text-cream-muted/50 italic leading-relaxed">
-                              {story.hook}
-                            </p>
+                          </div>
+                          
+                          <h3 className="font-serif text-xl md:text-2xl text-cream mb-2 group-hover:text-ember transition-colors duration-400">
+                            {story.title}
+                          </h3>
+                          
+                          <p className="font-serif text-sm text-cream-muted/60 italic leading-relaxed group-hover:text-cream-muted/90 transition-colors duration-400">
+                            {story.hook}
+                          </p>
+                          
+                          {/* View details indicator */}
+                          <div className="mt-4 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-400 translate-y-2 group-hover:translate-y-0">
+                            <span className="text-[9px] tracking-[0.2em] uppercase text-ember/80">View Details</span>
+                            <span className="text-ember text-xs group-hover:translate-x-1 transition-transform duration-300">→</span>
                           </div>
                         </div>
-                      )}
+
+                        {/* Multi-layer hover glow */}
+                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                          <div className="absolute inset-0 bg-gradient-to-t from-ember/15 via-ember/5 to-transparent" />
+                          <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-ember/10" />
+                        </div>
+                        
+                        {/* Border glow ring */}
+                        <div className="absolute inset-0 rounded-xl border-2 border-ember/0 group-hover:border-ember/30 transition-all duration-500 pointer-events-none" />
+                      </div>
                     </motion.div>
                   </CarouselItem>
                 ))}
@@ -594,6 +583,13 @@ const Index = () => {
 
         <Footer />
       </main>
+
+      {/* Story Modal */}
+      <StoryModal
+        story={selectedStory}
+        isOpen={!!selectedStory}
+        onClose={() => setSelectedStory(null)}
+      />
     </div>
   );
 };
