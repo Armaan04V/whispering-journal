@@ -9,6 +9,7 @@ import consequencesCover from "@/assets/consequences-cover.jpg";
 import faeCityCover from "@/assets/fae-city-cover.jpg";
 import thoughtsComfortCover from "@/assets/thoughts-comfort-cover.jpg";
 import Footer from "@/components/Footer";
+import StoryModal, { StoryData } from "@/components/StoryModal";
 
 interface Story {
   id: string;
@@ -28,6 +29,7 @@ interface Story {
 
 const Works = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [selectedStory, setSelectedStory] = useState<StoryData | null>(null);
   const location = useLocation();
 
   const navItems = [
@@ -234,15 +236,29 @@ const Works = () => {
                 {stories.map((story, index) => (
                   <article 
                     key={story.id} 
-                    className={`story-card rounded-lg overflow-hidden ${
+                    className={`story-card rounded-lg overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-[0_0_40px_rgba(210,105,30,0.15)] ${
                       index === 0 ? 'lg:flex' : 'md:flex'
                     }`}
+                    onClick={() => setSelectedStory({
+                      title: story.title,
+                      hook: story.description,
+                      longDescription: story.longDescription,
+                      themes: story.themes,
+                      status: story.status,
+                      wordCount: story.wordCount,
+                      chapters: story.chapters,
+                      platform: story.platform,
+                      url: story.platformUrl,
+                      image: story.coverImage,
+                      intensity: story.intensity,
+                      contentWarnings: story.contentWarnings,
+                    })}
                   >
                     <div className={`relative ${index === 0 ? 'lg:w-2/5' : 'md:w-1/3'}`}>
                       <img
                         src={story.coverImage}
                         alt={story.title}
-                        className={`w-full object-cover ${index === 0 ? 'h-72 lg:h-full' : 'h-56 md:h-full'}`}
+                        className={`w-full object-cover transition-transform duration-500 group-hover:scale-105 ${index === 0 ? 'h-72 lg:h-full' : 'h-56 md:h-full'}`}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/40 to-transparent md:bg-gradient-to-r" />
                       
@@ -274,7 +290,7 @@ const Works = () => {
                         </span>
                       </div>
 
-                      <h3 className={`font-serif text-cream mb-3 ${index === 0 ? 'text-2xl md:text-3xl' : 'text-xl md:text-2xl'}`}>
+                      <h3 className={`font-serif text-cream mb-3 hover:text-ember transition-colors ${index === 0 ? 'text-2xl md:text-3xl' : 'text-xl md:text-2xl'}`}>
                         {story.title}
                       </h3>
                       
@@ -320,15 +336,10 @@ const Works = () => {
                         )}
                       </div>
 
-                      <a
-                        href={story.platformUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-5 py-2.5 bg-ember/10 border border-ember/30 rounded-lg text-ember hover:bg-ember/20 hover:border-ember/50 transition-all duration-300 group"
-                      >
-                        <span className="text-xs tracking-wider uppercase">Begin Reading</span>
-                        <ExternalLink size={14} className="group-hover:translate-x-1 transition-transform" />
-                      </a>
+                      <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-ember/10 border border-ember/30 rounded-lg text-ember hover:bg-ember/20 hover:border-ember/50 transition-all duration-300 group">
+                        <span className="text-xs tracking-wider uppercase">View Details</span>
+                        <span className="group-hover:translate-x-1 transition-transform">→</span>
+                      </div>
                     </div>
                   </article>
                 ))}
@@ -380,6 +391,13 @@ const Works = () => {
         </section>
       </main>
       <Footer />
+
+      {/* Story Modal */}
+      <StoryModal
+        story={selectedStory}
+        isOpen={!!selectedStory}
+        onClose={() => setSelectedStory(null)}
+      />
     </div>
   );
 };
