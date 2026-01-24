@@ -322,11 +322,11 @@ const Index = () => {
                   stopOnMouseEnter: true,
                 }),
               ]}
-              className="w-full select-none"
+              className="w-full select-none overflow-visible"
             >
-              <CarouselContent className="-ml-4 md:-ml-6">
+              <CarouselContent className="-ml-4 md:-ml-6 py-4">
                 {featuredStories.map((story, index) => (
-                  <CarouselItem key={index} className="pl-4 md:pl-6 basis-full sm:basis-1/2 lg:basis-1/3">
+                  <CarouselItem key={index} className="pl-4 md:pl-6 basis-full sm:basis-1/2 lg:basis-1/3 overflow-visible">
                     <motion.div 
                       className="group relative"
                       whileHover={{ y: -8 }}
