@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   const platforms = [
     { name: "AO3", url: "https://archiveofourown.org" },
@@ -24,6 +26,12 @@ const Footer = () => {
                 {platform.name}
               </a>
             ))}
+            <Link
+              to="/privacy"
+              className="hover:text-cream-muted/70 transition-colors duration-500"
+            >
+              Privacy
+            </Link>
           </div>
           
           <span>© {new Date().getFullYear()}</span>

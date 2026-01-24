@@ -327,7 +327,11 @@ const Index = () => {
               <CarouselContent className="-ml-4 md:-ml-6">
                 {featuredStories.map((story, index) => (
                   <CarouselItem key={index} className="pl-4 md:pl-6 basis-full sm:basis-1/2 lg:basis-1/3">
-                    <div className="group relative">
+                    <motion.div 
+                      className="group relative"
+                      whileHover={{ y: -8 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    >
                       {story.url ? (
                         <a
                           href={story.url}
@@ -336,55 +340,68 @@ const Index = () => {
                           className="block"
                           draggable={false}
                         >
-                          <div className="relative aspect-[3/4] rounded-lg overflow-hidden bg-charcoal-light border border-border/30 transition-all duration-500 group-hover:scale-[1.03] group-hover:border-ember/40 group-hover:shadow-[0_0_60px_rgba(210,105,30,0.15)]">
+                          <div className="relative aspect-[3/4] rounded-xl overflow-hidden bg-charcoal-light border border-border/30 transition-all duration-500 group-hover:border-ember/50 group-hover:shadow-[0_20px_60px_rgba(210,105,30,0.25),0_0_100px_rgba(210,105,30,0.1)]">
                             {/* Image Background */}
                             <img
                               src={story.image}
                               alt={story.title}
-                              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 pointer-events-none"
+                              className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-110 pointer-events-none"
                               draggable={false}
                             />
 
-                            {/* Dark overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/60 to-transparent opacity-80 group-hover:opacity-70 transition-opacity duration-500" />
+                            {/* Dark overlay with animated gradient */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/50 to-transparent opacity-85 group-hover:opacity-75 transition-all duration-500" />
+                            
+                            {/* Animated corner accent */}
+                            <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-ember/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                            {/* Status Badge */}
+                            {/* Status Badge with pulse effect */}
                             <div className="absolute top-4 left-4">
-                              <span className={`text-[10px] tracking-[0.15em] uppercase px-2.5 py-1 rounded backdrop-blur-sm ${
+                              <span className={`text-[10px] tracking-[0.15em] uppercase px-3 py-1.5 rounded-full backdrop-blur-md transition-all duration-300 ${
                                 story.status === "Ongoing"
-                                  ? "bg-ember/30 text-ember border border-ember/40"
-                                  : "bg-charcoal-light/60 text-cream-muted/70 border border-border/40"
+                                  ? "bg-ember/40 text-ember border border-ember/50 shadow-[0_0_15px_rgba(210,105,30,0.3)] group-hover:shadow-[0_0_25px_rgba(210,105,30,0.5)]"
+                                  : "bg-charcoal-light/70 text-cream-muted/80 border border-border/50 group-hover:bg-charcoal-light/90"
                               }`}>
                                 {story.status}
                               </span>
                             </div>
 
-                            {/* Content */}
-                            <div className="absolute inset-x-0 bottom-0 p-6">
+                            {/* Content with slide-up reveal */}
+                            <div className="absolute inset-x-0 bottom-0 p-6 transition-transform duration-500 group-hover:translate-y-[-4px]">
                               <div className="flex items-center gap-2 mb-3">
-                                <span className="text-[10px] tracking-[0.15em] uppercase text-cream-muted/50">
+                                <span className="text-[10px] tracking-[0.15em] uppercase text-cream-muted/60 group-hover:text-cream-muted/80 transition-colors duration-300">
                                   {story.platform}
                                 </span>
-                                <ExternalLink size={10} className="text-cream-muted/30 group-hover:text-ember/60 transition-colors" />
+                                <ExternalLink size={10} className="text-cream-muted/40 group-hover:text-ember transition-colors duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                               </div>
                               
-                              <h3 className="font-serif text-xl md:text-2xl text-cream mb-2 group-hover:text-ember transition-colors duration-500">
+                              <h3 className="font-serif text-xl md:text-2xl text-cream mb-2 group-hover:text-ember transition-colors duration-400">
                                 {story.title}
                               </h3>
                               
-                              <p className="font-serif text-sm text-cream-muted/60 italic leading-relaxed group-hover:text-cream-muted/80 transition-colors duration-500">
+                              <p className="font-serif text-sm text-cream-muted/60 italic leading-relaxed group-hover:text-cream-muted/90 transition-colors duration-400">
                                 {story.hook}
                               </p>
+                              
+                              {/* Read indicator */}
+                              <div className="mt-4 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-400 translate-y-2 group-hover:translate-y-0">
+                                <span className="text-[9px] tracking-[0.2em] uppercase text-ember/80">Read Story</span>
+                                <span className="text-ember text-xs group-hover:translate-x-1 transition-transform duration-300">→</span>
+                              </div>
                             </div>
 
-                            {/* Hover glow effect */}
+                            {/* Multi-layer hover glow */}
                             <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-                              <div className="absolute inset-0 bg-gradient-to-t from-ember/10 via-transparent to-transparent" />
+                              <div className="absolute inset-0 bg-gradient-to-t from-ember/15 via-ember/5 to-transparent" />
+                              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-ember/10" />
                             </div>
+                            
+                            {/* Border glow ring */}
+                            <div className="absolute inset-0 rounded-xl border-2 border-ember/0 group-hover:border-ember/30 transition-all duration-500 pointer-events-none" />
                           </div>
                         </a>
                       ) : (
-                        <div className="relative aspect-[3/4] rounded-lg overflow-hidden bg-charcoal-light border border-border/30 transition-all duration-500 group-hover:scale-[1.02] group-hover:border-ember/30">
+                        <div className="relative aspect-[3/4] rounded-xl overflow-hidden bg-charcoal-light border border-border/30 transition-all duration-500 group-hover:border-ember/30">
                           {/* Image Background */}
                           <img
                             src={story.image}
@@ -398,14 +415,14 @@ const Index = () => {
 
                           {/* Status Badge */}
                           <div className="absolute top-4 left-4">
-                            <span className="text-[10px] tracking-[0.15em] uppercase px-2.5 py-1 rounded backdrop-blur-sm bg-charcoal-light/60 text-cream-muted/50 border border-border/30">
+                            <span className="text-[10px] tracking-[0.15em] uppercase px-3 py-1.5 rounded-full backdrop-blur-md bg-charcoal-light/70 text-cream-muted/60 border border-border/40">
                               {story.status}
                             </span>
                           </div>
 
                           {/* Content */}
                           <div className="absolute inset-x-0 bottom-0 p-6">
-                            <span className="text-[10px] tracking-[0.15em] uppercase text-cream-muted/40 block mb-3">
+                            <span className="text-[10px] tracking-[0.15em] uppercase text-cream-muted/50 block mb-3">
                               {story.platform}
                             </span>
                             
@@ -413,13 +430,13 @@ const Index = () => {
                               {story.title}
                             </h3>
                             
-                            <p className="font-serif text-sm text-cream-muted/40 italic leading-relaxed">
+                            <p className="font-serif text-sm text-cream-muted/50 italic leading-relaxed">
                               {story.hook}
                             </p>
                           </div>
                         </div>
                       )}
-                    </div>
+                    </motion.div>
                   </CarouselItem>
                 ))}
               </CarouselContent>
@@ -460,7 +477,7 @@ const Index = () => {
               <p className="font-serif text-lg md:text-xl text-cream-muted/70 leading-relaxed mb-12">
                 I write psychological horror. Slow-burn dread. Characters who make 
                 choices you understand but wish you didn't. The kind of stories that 
-                settle into the quiet parts of your mind and wait.
+                settle into the quiet parts of your mind. And wait.
               </p>
 
               <p className="text-sm text-cream-muted/40 mb-10">
@@ -494,7 +511,7 @@ const Index = () => {
               </h2>
               <p className="text-sm text-cream-muted/60 max-w-md mx-auto leading-relaxed">
                 Occasional dispatches. New stories. Behind-the-scenes whispers. 
-                No spam—just shadows, delivered rarely.
+                No spam, just shadows, delivered rarely.
               </p>
             </div>
 
