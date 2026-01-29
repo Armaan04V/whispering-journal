@@ -37,15 +37,6 @@ const StoryModal = ({ story, isOpen, onClose }: StoryModalProps) => {
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-2xl max-h-[90vh] p-0 overflow-hidden bg-charcoal border-border/40 backdrop-blur-xl flex flex-col">
         <DialogTitle className="sr-only">{story.title}</DialogTitle>
-        
-        {/* Close button */}
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 z-20 p-2 rounded-full bg-charcoal-dark/80 border border-border/40 text-cream-muted/60 hover:text-cream hover:border-ember/40 transition-all duration-300"
-          aria-label="Close"
-        >
-          <X size={16} />
-        </button>
 
         {/* Scrollable content wrapper */}
         <div className="overflow-y-auto flex-1">
