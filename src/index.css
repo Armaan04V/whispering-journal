@@ -100,6 +100,12 @@
     scroll-behavior: smooth;
   }
 
+  html, body {
+    /* Fallback for browsers that don't support CSS variables properly */
+    background-color: #0f0d0c;
+    color: #e8e2dc;
+  }
+
   body {
     @apply bg-background text-foreground antialiased;
     font-family: 'Source Sans 3', system-ui, sans-serif;
