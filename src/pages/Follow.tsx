@@ -40,6 +40,13 @@ const Follow = () => {
       description: "Follow for episode-by-episode updates on serialized originals. Best for ongoing series.",
       icon: "📖",
     },
+    {
+      name: "Reedsy",
+      url: "https://reedsy.com/creative-writing-prompts/author/am-martin/",
+      handle: "AM Martin",
+      description: "Short stories written for weekly prompts and contests. A quieter corner for shorter, sharper pieces.",
+      icon: "✒️",
+    },
   ];
 
   const whyFollow = [

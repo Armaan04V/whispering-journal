@@ -8,6 +8,9 @@ import summonHusbandCover from "@/assets/summon-husband-cover.jpg";
 import consequencesCover from "@/assets/consequences-cover.jpg";
 import faeCityCover from "@/assets/fae-city-cover.jpg";
 import thoughtsComfortCover from "@/assets/thoughts-comfort-cover.jpg";
+import stormyNightCover from "@/assets/stormy-night-cover.jpg";
+import destinedCover from "@/assets/destined-cover.jpg";
+import worstWitchesCover from "@/assets/worst-witches-cover.jpg";
 import Footer from "@/components/Footer";
 import StoryModal, { StoryData } from "@/components/StoryModal";
 
@@ -132,6 +135,48 @@ const Works = () => {
       contentWarnings: ["Discussions of trauma"],
       intensity: "Mild",
     },
+    {
+      id: "stormy-night",
+      title: "It was a dark and stormy night",
+      description: "No sane man would have gone outside without a good reason. I had one.",
+      longDescription: "A suspense short story written for Reedsy's Graveyard Shift contest. The kind of storm that claws at windows and gnaws at bones — and one man who steps into it anyway, knowing exactly what waits in the dark.",
+      themes: ["Suspense", "Psychological", "Short Fiction"],
+      status: "Complete",
+      chapters: "Short Story",
+      platform: "Reedsy",
+      platformUrl: "https://reedsy.com/short-story/pfm8vt/",
+      coverImage: stormyNightCover,
+      contentWarnings: ["Suspenseful themes"],
+      intensity: "Moderate",
+    },
+    {
+      id: "destined",
+      title: "Destined to be",
+      description: "Some prophecies are meant to be broken. Some refuse to be.",
+      longDescription: "A contemporary fantasy and suspense short story written for Reedsy's 'A Matter of Time' contest. Inside a grand olive-walled study, a quiet morning hides a desperate attempt to outwit fate itself.",
+      themes: ["Fantasy", "Suspense", "Prophecy", "Short Fiction"],
+      status: "Complete",
+      chapters: "Short Story",
+      platform: "Reedsy",
+      platformUrl: "https://reedsy.com/short-story/0swarq/",
+      coverImage: destinedCover,
+      contentWarnings: ["None"],
+      intensity: "Mild",
+    },
+    {
+      id: "worst-witches",
+      title: "The worst witches bake the best sweets",
+      description: "By the moon, this girl is hopeless.",
+      longDescription: "A fantasy short story written for Reedsy's 'Whiskers & Witchcraft' Halloween contest. Told from the perspective of a witch's familiar watching her protégée waste her potential on vanilla, nightshade, and quiet rebellion.",
+      themes: ["Fantasy", "LGBTQ+", "Witchcraft", "Familiars"],
+      status: "Complete",
+      chapters: "Short Story",
+      platform: "Reedsy",
+      platformUrl: "https://reedsy.com/short-story/y6cr5v/",
+      coverImage: worstWitchesCover,
+      contentWarnings: ["None"],
+      intensity: "Mild",
+    },
   ];
 
   // No upcoming works currently - all featured works are complete
@@ -148,6 +193,12 @@ const Works = () => {
       url: "https://tapas.io/machimaquiaveli",
       description: "Serialized originals and web fiction — best for following along",
       works: "Original series",
+    },
+    {
+      name: "Reedsy",
+      url: "https://reedsy.com/creative-writing-prompts/author/am-martin/",
+      description: "Short stories written for weekly prompts and contests",
+      works: "Short fiction",
     },
   ];
 
@@ -356,7 +407,7 @@ const Works = () => {
                 All works are free to read. Choose your preferred platform and enter the dark.
               </p>
               
-              <div className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
                 {platforms.map((platform) => (
                   <a
                     key={platform.name}

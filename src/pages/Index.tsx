@@ -10,6 +10,9 @@ import summonHusbandCover from "@/assets/summon-husband-cover.jpg";
 import consequencesCover from "@/assets/consequences-cover.jpg";
 import faeCityCover from "@/assets/fae-city-cover.jpg";
 import thoughtsComfortCover from "@/assets/thoughts-comfort-cover.jpg";
+import stormyNightCover from "@/assets/stormy-night-cover.jpg";
+import destinedCover from "@/assets/destined-cover.jpg";
+import worstWitchesCover from "@/assets/worst-witches-cover.jpg";
 import Footer from "@/components/Footer";
 import StoryModal, { StoryData } from "@/components/StoryModal";
 import { useToast } from "@/hooks/use-toast";
@@ -168,6 +171,42 @@ const Index = () => {
       chapters: "1 Chapter",
       intensity: "Mild",
       contentWarnings: ["Discussions of trauma"],
+    },
+    {
+      title: "It was a dark and stormy night",
+      hook: "No sane man would have gone outside without a good reason. I had one.",
+      longDescription: "A suspense short story written for Reedsy's Graveyard Shift contest. A storm that claws at windows and gnaws at bones — and one man who steps into it anyway. Some reasons are worth the cold.",
+      themes: ["Suspense", "Psychological", "Short Fiction"],
+      platform: "Reedsy",
+      url: "https://reedsy.com/short-story/pfm8vt/",
+      image: stormyNightCover,
+      status: "Complete",
+      chapters: "Short Story",
+      intensity: "Moderate",
+    },
+    {
+      title: "Destined to be",
+      hook: "Some prophecies are meant to be broken.",
+      longDescription: "A contemporary fantasy and suspense piece written for Reedsy's 'A Matter of Time' contest. Inside a grand olive-walled study, a quiet morning hides a desperate attempt to outwit fate itself.",
+      themes: ["Fantasy", "Suspense", "Prophecy", "Short Fiction"],
+      platform: "Reedsy",
+      url: "https://reedsy.com/short-story/0swarq/",
+      image: destinedCover,
+      status: "Complete",
+      chapters: "Short Story",
+      intensity: "Mild",
+    },
+    {
+      title: "The worst witches bake the best sweets",
+      hook: "By the moon, this girl is hopeless.",
+      longDescription: "A fantasy short story written for Reedsy's 'Whiskers & Witchcraft' Halloween contest. Told from the perspective of a witch's familiar watching her protégée waste her potential on vanilla, nightshade, and quiet rebellion.",
+      themes: ["Fantasy", "LGBTQ+", "Witchcraft", "Familiars"],
+      platform: "Reedsy",
+      url: "https://reedsy.com/short-story/y6cr5v/",
+      image: worstWitchesCover,
+      status: "Complete",
+      chapters: "Short Story",
+      intensity: "Mild",
     },
   ];
 
