@@ -34,13 +34,6 @@ const Follow = () => {
       icon: "📚",
     },
     {
-      name: "Tapas",
-      url: "https://tapas.io/machimaquiaveli",
-      handle: "@machimaquiaveli",
-      description: "Follow for episode-by-episode updates on serialized originals. Best for ongoing series.",
-      icon: "📖",
-    },
-    {
       name: "Reedsy",
       url: "https://reedsy.com/creative-writing-prompts/author/am-martin/",
       handle: "AM Martin",
