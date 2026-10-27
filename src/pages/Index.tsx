@@ -4,7 +4,6 @@ import { Menu, X, ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
 import Autoplay from "embla-carousel-autoplay";
 import pumpkinLogo from "@/assets/pumpkin-logo-transparent.png";
-import labyrinthCover from "@/assets/labyrinth-cover.png";
 import summonBoyfriendCover from "@/assets/summon-boyfriend-cover.jpg";
 import summonHusbandCover from "@/assets/summon-husband-cover.jpg";
 import consequencesCover from "@/assets/consequences-cover.jpg";
@@ -92,20 +91,6 @@ const Index = () => {
 
   // Featured stories with images and full details
   const featuredStories: StoryData[] = [
-    {
-      title: "Labyrinth",
-      hook: "Some doors only open from the inside.",
-      longDescription: "A collection of interconnected tales exploring the spaces between what we know and what waits in the dark. Each story turns a familiar corner into something unfamiliar. A hallway that shouldn't exist. A reflection that moves too slowly.",
-      themes: ["Psychological Horror", "Slow-burn", "Cosmic Dread"],
-      platform: "Tapas",
-      url: "https://tapas.io/machimaquiaveli",
-      image: labyrinthCover,
-      status: "Ongoing",
-      wordCount: "45,000+",
-      chapters: "12 Stories",
-      intensity: "Moderate",
-      contentWarnings: ["Psychological distress", "Existential themes"],
-    },
     {
       title: "How to summon a boyfriend",
       hook: "The world is ending. Steph has a plan.",

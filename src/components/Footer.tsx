@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   const platforms = [
     { name: "AO3", url: "https://archiveofourown.org/users/MachiMaquiaveli/pseuds/MachiMaquiaveli" },
-    { name: "Tapas", url: "https://tapas.io/machimaquiaveli" },
     { name: "Reedsy", url: "https://reedsy.com/creative-writing-prompts/author/am-martin/" },
   ];
 

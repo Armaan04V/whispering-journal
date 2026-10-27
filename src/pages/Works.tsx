@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ExternalLink, BookOpen, Clock, AlertTriangle } from "lucide-react";
 import pumpkinLogo from "@/assets/pumpkin-logo-transparent.png";
-import labyrinthCover from "@/assets/labyrinth-cover.png";
 import summonBoyfriendCover from "@/assets/summon-boyfriend-cover.jpg";
 import summonHusbandCover from "@/assets/summon-husband-cover.jpg";
 import consequencesCover from "@/assets/consequences-cover.jpg";
@@ -45,21 +44,6 @@ const Works = () => {
   const isActive = (path: string) => location.pathname === path;
 
   const stories: Story[] = [
-    {
-      id: "labyrinth",
-      title: "Labyrinth and Other Short Horror Stories",
-      description: "A collection of interconnected tales exploring the spaces between what we know and what waits in the dark.",
-      longDescription: "Each story in this anthology turns a familiar corner into something unfamiliar. A hallway that shouldn't exist. A reflection that moves too slowly. The neighbor who waves every morning, whose smile never quite reaches their eyes. These are the horrors that live in the ordinary—patient, persistent, and always watching.",
-      themes: ["Psychological Horror", "Slow-burn", "Morally Grey Characters", "Cosmic Dread"],
-      status: "Ongoing",
-      wordCount: "45,000+",
-      chapters: "12 Stories",
-      platform: "Tapas",
-      platformUrl: "https://tapas.io/machimaquiaveli",
-      coverImage: labyrinthCover,
-      contentWarnings: ["Psychological distress", "Implied violence", "Existential themes", "Unreliable narrators"],
-      intensity: "Moderate",
-    },
     {
       id: "summon-boyfriend",
       title: "How to summon a boyfriend by Spoiler",
@@ -187,12 +171,6 @@ const Works = () => {
       url: "https://archiveofourown.org/users/MachiMaquiaveli/pseuds/MachiMaquiaveli",
       description: "The complete archive — all works, all fandoms, no barriers",
       works: "Full catalog",
-    },
-    {
-      name: "Tapas",
-      url: "https://tapas.io/machimaquiaveli",
-      description: "Serialized originals and web fiction — best for following along",
-      works: "Original series",
     },
     {
       name: "Reedsy",
